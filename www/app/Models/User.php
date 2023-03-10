@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use League\Flysystem\Visibility;
 
 class User extends Authenticatable
 {
@@ -34,6 +35,17 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    // SOMENTE SERÃO SALVOS OS CAMPOS DECLARADOS
+    // protected $fillable = [
+    //     'name',
+    //     'email'
+    // ];
+
+    // SOMENTE O QUE PODERÁ SER VISÍVEL
+    // protected $visible = [
+
+    // ];
+
     /**
      * The attributes that should be cast.
      *
@@ -42,4 +54,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
+
 }

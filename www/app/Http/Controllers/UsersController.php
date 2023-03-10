@@ -32,15 +32,20 @@ class UsersController extends Controller
 
     public function store(UserStoreRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string'],
-            'email' => 'required|unique:users|email',
-            'password' => 'required|string|min:8|max:16'
-        ]);
+        $atributes = $request->validated();
+        
+        $user = User::create($atributes); // JOGANDO O OBJETO PARA VARIÁVEL
+        $user->Address()->create($atributes); // UTILIZANDO O FILLABLE DO MODEL
+
+        // $request->validate([
+        //     'name' => ['required', 'string'],
+        //     'email' => 'required|unique:users|email',
+        //     'password' => 'required|string|min:8|max:16'
+        // ]);
         
       // SEM VALIDAÇÃO $atributes = $request->only(['name', 'email', 'password']);
-      $atributes = $request->validate();
-      User::create($atributes);
+      
+      // User::create($atributes);
        
        return \Redirect()->route('user.index');
     }
