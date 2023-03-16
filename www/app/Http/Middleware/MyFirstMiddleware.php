@@ -19,7 +19,7 @@ class MyFirstMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-
+        /*
         if($this->users->count() === 160) {
             // se a quantidade se usuários ativos for 16
             echo 'Achou exatos 16 registros: <br/>';
@@ -28,7 +28,8 @@ class MyFirstMiddleware
             echo 'ACHOU MAIS DE 16 REGISTROS NO MIDDLEWARE';
             $response = $next($request);
         }
-
+        */
+        $response = $next($request);
         return $response;
        /*
         dd($this->users->get());

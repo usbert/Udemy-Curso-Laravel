@@ -10,20 +10,32 @@
    
 
     <main class="container"> 
+        <div class="d-flex justify-content-between">
+            <h1>Index</h1>
+            <form method="post" action="{{route('logout')}}">
+                @csrf
+                <button type="submit" class="btn btn-link">Sair</button>
+            </form>
+        </div>
         
-        <h1>Index</h1>
         
-        <a href="{{route('user.create')}}"  class="btn btn-primary">Adicionar Outro</a>
+        <a href="{{route('user.create')}}"  class="btn btn-primary">Novo Usuário</a>
 
         <table class="table">
             <thead>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Deletar</th>
-                <th scope="col"></th>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Rua</th>
+                  <th scope="col">Número</th>
+                  <th scope="col">Criação</th>
+                  <th scope="col">Info</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Deletar</th>
+                  <th scope="col">Post</th>
+                  <th scope="col">Endereço</th>
+                  
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +44,10 @@
                     <th scope="row">{{$user->id}}</th>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    <td></td>
+                    <td></td>
+                    
+                    <td>{{$user->created_at}}</td>
                     <td><a type="button" href="{{ route('user.show', $user->id) }}" class="btn btn-success" />Ver</td>
                     <td><a type="button" href="{{ route('user.edit', $user->id) }}" class="btn btn-warning" />Editar</td>
                     <td>
@@ -41,6 +57,10 @@
                         <button type="submit" class="btn btn-danger" />Deletar</button>
                       </form>
                     </td>
+                    <td><a type="button" href="{{ route('post.create', $user->id) }}" class="btn btn-primary" />Novo Post</td>
+                    <td><a type="button" href="{{ route('user.post', $user->id) }}" class="btn btn-primary" />Post</td>
+
+                      <td><a type="button" href="{{ route('user.address', $user->id) }}" class="btn btn-info" />Endereço</td>
                   </tr>
                 <tr>
                @endforeach

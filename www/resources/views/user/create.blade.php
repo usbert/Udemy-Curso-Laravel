@@ -15,7 +15,7 @@
         
         <form action="{{route('user.store')}}" method="post">
         
-          @csrf
+        @csrf
         {{--  @foreach($errors->all() as $error) --}}
         {{--      <li>{{$error}}</li> --}}
         {{--    @endforeach --}}

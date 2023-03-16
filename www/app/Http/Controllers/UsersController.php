@@ -12,11 +12,8 @@ class UsersController extends Controller
     
     public function index()
     {
-       /*  $users = User::where('id', '<', '10')->get();
-        dd($users);
-        */
-        
-        $users = User::get();
+     
+        $users = User::with('address')->get();
 
         return view('user.index', [
             'users' => $users
@@ -32,8 +29,13 @@ class UsersController extends Controller
 
     public function store(UserStoreRequest $request)
     {
+        // dd('chegou'); 
         $atributes = $request->validated();
-        
+       
+        $atributes['password'] = bcrypt($atributes['password']);
+
+       // dd($atributes); 
+
         $user = User::create($atributes); // JOGANDO O OBJETO PARA VARIÁVEL
         $user->Address()->create($atributes); // UTILIZANDO O FILLABLE DO MODEL
 
@@ -100,4 +102,14 @@ class UsersController extends Controller
         return \Redirect()->route('user.index');
 
     }
+
+
+    public function address($id)
+    {
+        $user = User::with(['address', 'post'])->find($id);
+        return $user;
+
+
+    }
+
 }

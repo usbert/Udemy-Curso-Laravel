@@ -33,7 +33,7 @@ class UserStoreRequest extends FormRequest
         return [
             'string' => 'Este campo precisa ser uma string',
             'required' => 'Este campo é obrigatório',
-            'password' => 'Este campo deve ser um e-mail',
+            // 'password' => 'Este campo deve ser um e-mail',
             'accepted' => 'Aceite o termo'
         ];
     }
